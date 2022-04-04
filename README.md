@@ -29,8 +29,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="va_banner.png">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="va_banner.webp">
+    <img src="va_banner.webp" alt="Logo" width="512">
   </a>
 
 <h3 align="center">Announcer [Velocity]</h3>
@@ -38,50 +38,19 @@
   <p align="center">
     Make network-wide announcements on your Velocity server.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the wiki »</strong></a>
+    <a href="https://github.com/Matt-MX/AnnouncerVelocity/releases"><strong>Download »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
     <a href="https://github.com/Matt-MX/AnnouncerVelocity/issues">Report Bug</a>
     ·
     <a href="https://github.com/Matt-MX/AnnouncerVelocity/issues">Request Feature</a>
   </p>
 </div>
 
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## Features
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[comment]: <> ([![Product Name Screen Shot][product-screenshot]]&#40;https://example.com&#41;)
 
 This announcer plugin comes with an easy-to-use GUI! Everything is clearly labelled,
 and we provide excellent customization for your announcements.
@@ -136,11 +105,6 @@ see a GUI pop up.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 <!-- LICENSE -->
 ## License
 
@@ -173,16 +137,29 @@ Project Link: [https://github.com/Matt-MX/AnnouncerVelocity](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+
+[comment]: <> ([contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge)
+
+[comment]: <> ([contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors)
+
+[comment]: <> ([forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge)
+
+[comment]: <> ([forks-url]: https://github.com/othneildrew/Best-README-Template/network/members)
+
+[comment]: <> ([stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge)
+
+[comment]: <> ([stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers)
+
+[comment]: <> ([issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge)
+
+[comment]: <> ([issues-url]: https://github.com/othneildrew/Best-README-Template/issues)
+
+[comment]: <> ([license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge)
+
+[comment]: <> ([license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt)
+
+[comment]: <> ([linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555)
+
+[comment]: <> ([linkedin-url]: https://linkedin.com/in/othneildrew)
+
+[comment]: <> ([product-screenshot]: images/screenshot.png)
