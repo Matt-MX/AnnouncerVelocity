@@ -61,6 +61,8 @@
 This announcer plugin comes with an easy-to-use GUI! Everything is clearly labelled,
 and we provide excellent customization for your announcements.
 
+You can customize `sounds`, `titles`, `subtitles`, `chat messages`, `delay` all through the GUI!
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Setup
