@@ -15,6 +15,7 @@ import dev.simplix.protocolize.api.ClickType;
 import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.SoundCategory;
 import dev.simplix.protocolize.api.inventory.InventoryClick;
+import dev.simplix.protocolize.api.inventory.InventoryClose;
 import dev.simplix.protocolize.api.item.ItemStack;
 import dev.simplix.protocolize.api.player.ProtocolizePlayer;
 import dev.simplix.protocolize.data.ItemType;
@@ -102,6 +103,7 @@ public class SoundScreen extends InventoryBuilder {
             searching = false;
             search = null;
         }
+        ChatManager.remove(e.getPlayer());
         define(getPlayer(), parent);
         open();
     }
