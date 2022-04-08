@@ -9,11 +9,18 @@ import dev.simplix.protocolize.api.inventory.PlayerInventory;
 import dev.simplix.protocolize.api.player.ProtocolizePlayer;
 import dev.simplix.protocolize.data.Sound;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.Ticks;
 
 import java.time.Duration;
 import java.util.*;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AnnouncerMessage {
     private String id;
@@ -35,8 +42,18 @@ public class AnnouncerMessage {
                 protocolizePlayer.playSound(Sound.valueOf(sound), SoundCategory.MASTER, 1f, 1f);
             }
             if (lines != null) {
-                lines.forEach(l -> p.sendMessage(VelocityChat.color(l)));
+                lines.forEach(l -> {
+                    TextComponent msg = VelocityChat.color(l.replace("<none>", " "), p);
+                    msg = (TextComponent) makeURLsClickable(msg);
+                    p.sendMessage(msg);
+                });
             }
+    }
+
+    public static Component makeURLsClickable(final TextComponent in) {
+        return in.replaceText(TextReplacementConfig.builder()
+                .match("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)")
+                .replacement(url -> url.clickEvent(ClickEvent.openUrl(url.content()))).build());
     }
 
     public String getId() {

@@ -44,7 +44,7 @@ public class MessageLinesScreen extends InventoryBuilder {
             setItem(i, new ItemBuilder(ItemType.PAPER)
                     .name(VelocityChat.color("&b&lLine " + (i + 1)))
                     .lore(Component.text(""))
-                    .lore(VelocityChat.color("&7Currently » '&f" + line + "&7'"))
+                    .lore(VelocityChat.color("&7Currently » '&f" + line.replace("<none>", " ") + "&7'"))
                     .lore(Component.text(line))
                     .lore(Component.text(""))
                     .lore(VelocityChat.color("&bClick &7to change"))
@@ -70,7 +70,7 @@ public class MessageLinesScreen extends InventoryBuilder {
     @Override
     public void onChat(PlayerChatEvent e) {
         if (!e.getMessage().equalsIgnoreCase("cancel")) {
-            parent.getMessage().setLine(line, e.getMessage().replace("<none>", " "));
+            parent.getMessage().setLine(line, e.getMessage());
         }
         ChatManager.remove(e.getPlayer());
         define(getPlayer(), parent);

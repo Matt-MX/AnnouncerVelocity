@@ -67,7 +67,7 @@ public class MessageScreen extends InventoryBuilder {
                         Component.text(""),
                         VelocityChat.color("&7Currently:"),
                 })
-                .lore(message.getLines().stream().map(VelocityChat::color).collect(Collectors.toList()))
+                .lore(message.getLines().stream().map(m -> VelocityChat.color(m.replace("<none>", " "))).collect(Collectors.toList()))
                 .lores(new TextComponent[] {
                         Component.text(""),
                         VelocityChat.color("&bClick&7 to change"),
