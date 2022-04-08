@@ -136,7 +136,7 @@ Project Link: [https://github.com/Matt-MX/AnnouncerVelocity](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [Protocolize](https://github.com/Matt-MX/AnnouncerVelocity)
+* [Protocolize](https://github.com/Exceptionflug/protocolize)
 * [Velocity](https://velocitypowered.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
