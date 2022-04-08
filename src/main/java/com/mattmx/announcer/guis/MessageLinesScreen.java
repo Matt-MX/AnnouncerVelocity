@@ -107,7 +107,7 @@ public class MessageLinesScreen extends InventoryBuilder {
                         ChatManager.add(getPlayer(), this);
                         VelocityChat.clearChat(getPlayer());
                         getPlayer().sendMessage(VelocityChat.color("&9&lChange Line " + (line + 1)));
-                        getPlayer().sendMessage(VelocityChat.color("&7Currently » '&f" + parent.getMessage().getLines().get(line) + "&7' (Click to copy)")
+                        getPlayer().sendMessage(VelocityChat.color("&7Currently » '&f" + parent.getMessage().getLines().get(line).replace("<none>", " ") + "&7' (Click to copy)")
                                 .clickEvent(ClickEvent.suggestCommand(parent.getMessage().getLines().get(line))));
                         getPlayer().sendMessage(VelocityChat.color("&bPlease provide a string"));
                         getPlayer().sendMessage(VelocityChat.color("   &fExample: 'Hello World'"));
