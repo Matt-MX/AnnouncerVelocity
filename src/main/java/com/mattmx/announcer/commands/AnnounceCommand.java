@@ -31,7 +31,7 @@ public class AnnounceCommand implements SimpleCommand {
             if (args.length > 0) {
                 switch (args[0].toLowerCase()) {
                     case "about" -> {
-                        p.sendMessage(VelocityChat.color("&9&lVelocityAnnouncer &7» &fRunning v1.0.0"));
+                        p.sendMessage(VelocityChat.color("&9&lVelocityAnnouncer &7» &fRunning v1.2.1"));
                         p.sendMessage(VelocityChat.color("&9&lVelocityAnnouncer &7» &fCreated by &b&nMattMX")
                                 .clickEvent(ClickEvent.openUrl("https://www.mattmx.com/")));
                     }
@@ -42,7 +42,7 @@ public class AnnounceCommand implements SimpleCommand {
                             AnnouncerManager.load();
                             p.sendMessage(VelocityChat.color("&9&lVelocityAnnouncer &7» &fReloaded all data from files!"));
                         } else {
-                            p.sendMessage(VelocityChat.color("&9&lVelocityAnnouncer &7» &fRunning v1.0.0"));
+                            p.sendMessage(VelocityChat.color("&9&lVelocityAnnouncer &7» &fRunning v1.2.1"));
                         }
                     }
                     default -> {

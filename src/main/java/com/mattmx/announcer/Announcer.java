@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 @Plugin(
         id = "announcer",
         name = "Announcer",
-        version = "1.0",
+        version = "1.2.1",
         description = "Velocity server-wide announcements!",
         url = "https://www.mattmx.com",
         authors = {"MattMX"}
