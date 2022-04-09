@@ -135,7 +135,7 @@ public class MessageScreen extends InventoryBuilder {
                 VelocityChat.clearChat(e.getPlayer());
                 e.getPlayer().sendMessage(VelocityChat.color("&9&lChange Delay &7(seconds)"));
                 e.getPlayer().sendMessage(VelocityChat.color("&bPlease provide a valid &lDelay"));
-                e.getPlayer().sendMessage(VelocityChat.color("   &7Example: '&f2&7' or '&f2-20&7' for a random delay"));
+                e.getPlayer().sendMessage(VelocityChat.color("   &7Example: '&f2&7' or '&f2 20&7' for a random delay between &f2 &7and &f20 &7seconds."));
                 e.getPlayer().sendMessage(VelocityChat.color("   &7Set to &f-1 &7to disable."));
             }
         } else {
@@ -240,7 +240,7 @@ public class MessageScreen extends InventoryBuilder {
                     VelocityChat.clearChat(getPlayer());
                     getPlayer().sendMessage(VelocityChat.color("&9&lChange Delay &7(seconds)"));
                     getPlayer().sendMessage(VelocityChat.color("&bPlease provide a valid &lDelay"));
-                    getPlayer().sendMessage(VelocityChat.color("   &7Example: '&f2&7' or '&f2-20&7' for a random delay"));
+                    getPlayer().sendMessage(VelocityChat.color("   &7Example: '&f2&7' or '&f2 20&7' for a random delay between &f2 &7and &f20 &7seconds."));
                     getPlayer().sendMessage(VelocityChat.color("   &7Set to &f-1 &7to disable."));
                 }
             }
