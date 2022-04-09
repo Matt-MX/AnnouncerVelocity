@@ -51,9 +51,9 @@ public class AnnouncementsScreen extends InventoryBuilder {
                     .lore(VelocityChat.color("&bSound &7» &f" + (m.getSound() == null ? "&cnothing" : m.getSound())))
                     .lore(VelocityChat.color("&bTitle &7» " + (m.getTitle() == null ? "&cnothing" : "'&f" + m.getTitle() + "&7'")))
                     .lore(VelocityChat.color("&bSubtitle &7» " + (m.getSubtitle() == null ? "&cnothing" : "'&f" + m.getSubtitle() + "&7'")))
-                    .lore(VelocityChat.color("&bDelay &7» &c" + (m.getDelay() == -1 ? "&cdisabled" : "&cevery " + m.getDelay() + " seconds")))
+                    .lore(VelocityChat.color("&bDelay &7» &c" + (m.getDelay() == null ? "&cdisabled" : "&cevery " + m.getDelay().toString().replace(" ", "-") + " seconds")))
                     .lore(VelocityChat.color("&bChat: " + (m.getLines().size() == 0 ? "&cnone" : "")))
-                    .lore(m.getLines().stream().map(l -> VelocityChat.color("&7 - &f" + l)).collect(Collectors.toList()))
+                    .lore(m.getLines().stream().map(l -> VelocityChat.color("&7 - &f" + l.replace("<none>", " "))).collect(Collectors.toList()))
                     .lore(Component.text(""))
                     .lore(VelocityChat.color("&bRight Click &7to edit"))
                     .lore(VelocityChat.color("&bLeft Click &7to send manually"))
@@ -77,7 +77,7 @@ public class AnnouncementsScreen extends InventoryBuilder {
         } else if (e.slot() == 49) {
             // create new
             AnnouncerMessage msg = new AnnouncerMessage()
-                    .setDelay(-1)
+                    .setDelay(null)
                     .setId("id_" + RandomStringUtils.randomAlphabetic(6));
             AnnouncerManager.add(msg);
             MessageScreen newScreen = new MessageScreen();

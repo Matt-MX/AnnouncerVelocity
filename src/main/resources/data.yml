@@ -20,4 +20,7 @@ shop:
     - '                 &6&lWANT MORE PERKS?'
     - '         &7Donate now to receive special perks!'
     - '            &6>> &e&nhttps://shop.website.com &6<<'
-
+random:
+  delay: 600 300
+  chat:
+    - '&c&lThis announcement was after a random interval!'

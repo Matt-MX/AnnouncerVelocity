@@ -43,10 +43,21 @@ public class AnnouncerManager {
         Announcer.get().getServer().getScheduler().buildTask(Announcer.get(), () -> {
             timer++;
             new ArrayList<>(messages).forEach(m -> {
-                if (m.getDelay() != -1) {
-                    if (timer % m.getDelay() == 0) {
-                        Announcer.get().getServer().getAllPlayers().forEach(m::execute);
+                if (m.getDelay() != null) {
+                    if (m.getDelay().getType() == Delay.DelayType.RANGE) {
+                        int min = m.getDelay().getTime();
+                        int max = m.getDelay().getMaxTime();
+                        if (timer % new Random().nextInt(max - min) + min == 0) {
+                            Announcer.get().getServer().getAllPlayers().forEach(m::execute);
+                        }
+                    } else {
+                        if (timer % m.getDelay().getTime() == 0) {
+                            Announcer.get().getServer().getAllPlayers().forEach(m::execute);
+                        }
                     }
+//                    if (timer % m.getDelay() == 0) {
+//                        Announcer.get().getServer().getAllPlayers().forEach(m::execute);
+//                    }
                 }
             });
         }).repeat(1, TimeUnit.SECONDS).schedule();
@@ -58,8 +69,12 @@ public class AnnouncerManager {
         config.set(msg.getId() + ".title", msg.getTitle());
         config.set(msg.getId() + ".subtitle", msg.getSubtitle());
         config.set(msg.getId() + ".sound", msg.getSound());
-        config.set(msg.getId() + ".delay", msg.getDelay());
         config.set(msg.getId() + ".chat", msg.getLines());
+        if (msg.getDelay() == null) {
+            config.set(msg.getId() + ".delay", -1);
+        } else {
+            config.set(msg.getId() + ".delay", msg.getDelay().toString());
+        }
         try {
             config.save(Config.DATA_PATH);
         } catch (IOException e) {
@@ -76,8 +91,18 @@ public class AnnouncerManager {
                 if (config.getString(id + ".title") != null) msg.setTitle(config.getString(id + ".title"));
                 if (config.getString(id + ".subtitle") != null) msg.setSubtitle(config.getString(id + ".subtitle"));
                 if (config.getString(id + ".sound") != null) msg.setSound(config.getString(id + ".sound"));
-                if (config.getString(id + ".delay") != null) msg.setDelay(config.getInt(id + ".delay"));
                 if (config.getStringList(id + ".chat") != null) msg.setLines(config.getStringList(id + ".chat"));
+                if (config.getString(id + ".delay") != null) {
+                    if (config.getInt(id + ".delay") == -1) {
+                        msg.setDelay(null);
+                    } else {
+                        if (Delay.isValid(config.getString(id + ".delay"))) {
+                            msg.setDelay(new Delay(config.getString(id + ".delay")));
+                        } else {
+                            msg.setDelay(null);
+                        }
+                    }
+                }
                 msg.setId(id);
                 messages.add(msg);
             }

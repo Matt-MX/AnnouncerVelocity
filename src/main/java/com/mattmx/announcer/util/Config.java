@@ -13,7 +13,7 @@ public class Config {
     public static String DATA_PATH = Announcer.get().getDataFolder() + "/data.yml";
 
     public static void init() {
-        DEFAULT = get(DEFAULT_PATH, "config.yml");
+        //DEFAULT = get(DEFAULT_PATH, "config.yml");
         DATA = get(DATA_PATH, "data.yml");
     }
 

@@ -1,10 +1,7 @@
 package com.mattmx.announcer.guis;
 
 import com.mattmx.announcer.Announcer;
-import com.mattmx.announcer.logic.AnnouncerManager;
-import com.mattmx.announcer.logic.AnnouncerMessage;
-import com.mattmx.announcer.logic.ChatInputs;
-import com.mattmx.announcer.logic.ChatManager;
+import com.mattmx.announcer.logic.*;
 import com.mattmx.announcer.util.VelocityChat;
 import com.mattmx.announcer.util.gui.Enchantments;
 import com.mattmx.announcer.util.gui.InventoryBuilder;
@@ -67,7 +64,7 @@ public class MessageScreen extends InventoryBuilder {
                         Component.text(""),
                         VelocityChat.color("&7Currently:"),
                 })
-                .lore(message.getLines().stream().map(m -> VelocityChat.color(m.replace("<none>", " "))).collect(Collectors.toList()))
+                .lore(message.getLines().stream().map(m -> VelocityChat.color("&7 - &f" + m.replace("<none>", " "))).collect(Collectors.toList()))
                 .lores(new TextComponent[] {
                         Component.text(""),
                         VelocityChat.color("&bClick&7 to change"),
@@ -106,7 +103,9 @@ public class MessageScreen extends InventoryBuilder {
                 .name(VelocityChat.color("&9&lDelay"))
                 .lores(new TextComponent[] {
                         Component.text(""),
-                        VelocityChat.color("&7Currently » " + (message.getDelay() == -1 ? "&cdisabled" : "&cevery " + message.getDelay() + " seconds")),
+                        VelocityChat.color("&7Currently » " + (message.getDelay() == null ? "&cdisabled" : "&cevery " +
+                                message.getDelay().toString().replace(" ", "-")
+                                + " seconds")),
                         Component.text(""),
                         VelocityChat.color("&bClick&7 to change"),
                         VelocityChat.color("&bDrop&7 to disable"),
@@ -127,17 +126,16 @@ public class MessageScreen extends InventoryBuilder {
     @Override
     public void onChat(PlayerChatEvent e) {
         if (listening == ChatInputs.DELAY) {
-            try {
-                int in = Integer.parseInt(e.getMessage());
-                message.setDelay(in);
+            if (Delay.isValid(e.getMessage())) {
+                message.setDelay(new Delay(e.getMessage()));
                 ChatManager.remove(e.getPlayer());
                 define(getPlayer(), message);
                 open();
-            } catch (Exception ex) {
+            } else {
                 VelocityChat.clearChat(e.getPlayer());
                 e.getPlayer().sendMessage(VelocityChat.color("&9&lChange Delay &7(seconds)"));
-                e.getPlayer().sendMessage(VelocityChat.color("&bPlease provide a valid &lInteger"));
-                e.getPlayer().sendMessage(VelocityChat.color("   &fExample: '2'"));
+                e.getPlayer().sendMessage(VelocityChat.color("&bPlease provide a valid &lDelay"));
+                e.getPlayer().sendMessage(VelocityChat.color("   &7Example: '&f2&7' or '&f2-20&7' for a random delay"));
                 e.getPlayer().sendMessage(VelocityChat.color("   &7Set to &f-1 &7to disable."));
             }
         } else {
@@ -232,7 +230,7 @@ public class MessageScreen extends InventoryBuilder {
             case 16 -> {
                 //delay
                 if (e.clickType() == ClickType.DROP) {
-                    message.setDelay(-1);
+                    message.setDelay(null);
                     define(getPlayer(), message);
                     open();
                 } else {
@@ -241,8 +239,8 @@ public class MessageScreen extends InventoryBuilder {
                     ChatManager.add(getPlayer(), this);
                     VelocityChat.clearChat(getPlayer());
                     getPlayer().sendMessage(VelocityChat.color("&9&lChange Delay &7(seconds)"));
-                    getPlayer().sendMessage(VelocityChat.color("&bPlease provide a valid &lInteger"));
-                    getPlayer().sendMessage(VelocityChat.color("   &fExample: '2'"));
+                    getPlayer().sendMessage(VelocityChat.color("&bPlease provide a valid &lDelay"));
+                    getPlayer().sendMessage(VelocityChat.color("   &7Example: '&f2&7' or '&f2-20&7' for a random delay"));
                     getPlayer().sendMessage(VelocityChat.color("   &7Set to &f-1 &7to disable."));
                 }
             }

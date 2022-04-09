@@ -28,7 +28,7 @@ public class AnnouncerMessage {
     private String title = null;
     private String subtitle = null;
     private String sound = null;
-    private int delay;
+    private Delay delay;
 
     public void execute(Player p) {
             Title title = Title.title(
@@ -120,11 +120,11 @@ public class AnnouncerMessage {
         return this;
     }
 
-    public int getDelay() {
+    public Delay getDelay() {
         return delay;
     }
 
-    public AnnouncerMessage setDelay(int delay) {
+    public AnnouncerMessage setDelay(Delay delay) {
         this.delay = delay;
         return this;
     }
