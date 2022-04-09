@@ -131,6 +131,11 @@ public class MessageScreen extends InventoryBuilder {
                 ChatManager.remove(e.getPlayer());
                 define(getPlayer(), message);
                 open();
+            } else if (e.getMessage().equalsIgnoreCase("-1")) {
+                message.setDelay(null);
+                ChatManager.remove(e.getPlayer());
+                define(getPlayer(), message);
+                open();
             } else {
                 VelocityChat.clearChat(e.getPlayer());
                 e.getPlayer().sendMessage(VelocityChat.color("&9&lChange Delay &7(seconds)"));

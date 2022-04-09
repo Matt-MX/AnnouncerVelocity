@@ -32,13 +32,21 @@ public class Delay {
     }
 
     private void constr(int time, int maxTime) {
+        if (time == maxTime) {
+            maxTime = -1;
+        }
         this.time = time;
         if (maxTime == -1) {
             this.type = DelayType.STATIC;
         } else {
             this.maxTime = maxTime;
             this.type = DelayType.RANGE;
-            this.next = AnnouncerManager.getTimer() + new Random().nextInt(maxTime - time) + time;
+            if (time > maxTime) {
+                // invert
+                this.time = maxTime;
+                this.maxTime = time;
+            }
+            this.next = AnnouncerManager.getTimer() + new Random().nextInt(this.maxTime - this.time) + this.time;
         }
     }
 
