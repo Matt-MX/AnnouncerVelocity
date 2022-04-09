@@ -45,9 +45,10 @@ public class AnnouncerManager {
             new ArrayList<>(messages).forEach(m -> {
                 if (m.getDelay() != null) {
                     if (m.getDelay().getType() == Delay.DelayType.RANGE) {
-                        int min = m.getDelay().getTime();
-                        int max = m.getDelay().getMaxTime();
-                        if (timer % new Random().nextInt(max - min) + min == 0) {
+                        if (timer % m.getDelay().getNext() == 0) {
+                            int min = m.getDelay().getTime();
+                            int max = m.getDelay().getMaxTime();
+                            m.getDelay().setNext(timer + new Random().nextInt(max - min) + min);
                             Announcer.get().getServer().getAllPlayers().forEach(m::execute);
                         }
                     } else {
@@ -107,5 +108,9 @@ public class AnnouncerManager {
                 messages.add(msg);
             }
         }
+    }
+
+    public static long getTimer() {
+        return timer;
     }
 }

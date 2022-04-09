@@ -2,10 +2,13 @@ package com.mattmx.announcer.logic;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.util.Random;
+
 public class Delay {
     private DelayType type;
     private int time;
     private int maxTime;
+    private long next;
 
     public Delay(String line) {
         String[] args = line.split(" ");
@@ -29,13 +32,22 @@ public class Delay {
     }
 
     private void constr(int time, int maxTime) {
+        this.time = time;
         if (maxTime == -1) {
             this.type = DelayType.STATIC;
         } else {
             this.maxTime = maxTime;
             this.type = DelayType.RANGE;
+            this.next = AnnouncerManager.getTimer() + new Random().nextInt(maxTime - time) + time;
         }
-        this.time = time;
+    }
+
+    public void setNext(long i) {
+        this.next = i;
+    }
+
+    public long getNext() {
+        return next;
     }
 
     @Override
