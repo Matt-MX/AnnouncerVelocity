@@ -35,6 +35,14 @@ public class AnnouncerManager {
         });
     }
 
+    public static AnnouncerMessage byId(String id) {
+        for (AnnouncerMessage m : messages) {
+            if(m.getId().equals(id))
+                return m;
+        }
+        return null;
+    }
+
     public static List<AnnouncerMessage> getAll() {
         return messages;
     }
