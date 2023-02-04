@@ -1,5 +1,7 @@
 package com.mattmx.announcer.announcements
 
+import co.pvphub.velocity.util.colored
+import com.mattmx.announcer.utils.formatted
 import com.velocitypowered.api.proxy.ProxyServer
 import net.kyori.adventure.text.TextComponent
 
@@ -13,8 +15,8 @@ import net.kyori.adventure.text.TextComponent
  * @param delay of the announcement
  */
 class SimpleAnnouncement(
-    val id: String,
-    val messages: ArrayList<TextComponent>,
+    private val id: String,
+    val messages: MutableList<TextComponent>,
     val options: SimpleAnnouncementOptions
 ) : Announcement {
     private var lastExecute: Long = 0L
@@ -34,5 +36,16 @@ class SimpleAnnouncement(
     }
 
     override fun shouldExecute() = lastExecute + options.delay.toMillis() <= System.currentTimeMillis()
+
+    override fun lore(): MutableList<TextComponent> {
+        val lore = super.lore()
+        lore += "&7Delay &d${options.delay.formatted()}".colored()
+        lore += "&7Permission (Show): &d${options.permissionToDisplay}".colored()
+        lore += "&7Permission (Hide): &d${options.permissionToHide}".colored()
+        lore += "&7Target servers: &d${options.targetServers}".colored()
+        lore += "&7Chat lines: &d${messages.size}".colored()
+        return lore
+    }
+
     override fun getId() = id
 }

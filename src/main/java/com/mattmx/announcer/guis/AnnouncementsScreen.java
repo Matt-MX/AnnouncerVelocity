@@ -1,6 +1,6 @@
 package com.mattmx.announcer.guis;
 
-import com.mattmx.announcer.Announcer;
+import com.mattmx.announcer.OldAnnouncer;
 import com.mattmx.announcer.logic.AnnouncerManager;
 import com.mattmx.announcer.logic.AnnouncerMessage;
 import com.mattmx.announcer.util.VelocityChat;
@@ -98,7 +98,7 @@ public class AnnouncementsScreen extends InventoryBuilder {
                         }
                         case LEFT_CLICK ->  {
                             // send manually
-                            Announcer.get().getServer().getAllPlayers().forEach(msg::execute);
+                            OldAnnouncer.get().getServer().getAllPlayers().forEach(msg::execute);
                         }
                         case DROP -> {
                             AnnouncerManager.remove(msg);

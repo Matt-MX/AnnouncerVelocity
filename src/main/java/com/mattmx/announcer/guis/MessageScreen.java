@@ -1,25 +1,19 @@
 package com.mattmx.announcer.guis;
 
-import com.mattmx.announcer.Announcer;
+import com.mattmx.announcer.OldAnnouncer;
 import com.mattmx.announcer.logic.*;
 import com.mattmx.announcer.util.VelocityChat;
-import com.mattmx.announcer.util.gui.Enchantments;
 import com.mattmx.announcer.util.gui.InventoryBuilder;
 import com.mattmx.announcer.util.gui.ItemBuilder;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.proxy.Player;
 import dev.simplix.protocolize.api.ClickType;
 import dev.simplix.protocolize.api.inventory.InventoryClick;
-import dev.simplix.protocolize.api.item.ItemStack;
 import dev.simplix.protocolize.data.ItemType;
 import dev.simplix.protocolize.data.inventory.InventoryType;
-import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -173,7 +167,7 @@ public class MessageScreen extends InventoryBuilder {
                 // preview
                 close();
                 message.execute(getPlayer());
-                Announcer.get().getServer().getScheduler().buildTask(Announcer.get(), this::open).delay(3, TimeUnit.SECONDS).schedule();
+                OldAnnouncer.get().getServer().getScheduler().buildTask(OldAnnouncer.get(), this::open).delay(3, TimeUnit.SECONDS).schedule();
             }
             case 53 -> {
                 //return

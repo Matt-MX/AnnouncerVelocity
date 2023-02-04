@@ -1,6 +1,8 @@
 package com.mattmx.announcer.announcements
 
+import co.pvphub.velocity.util.colored
 import com.velocitypowered.api.proxy.ProxyServer
+import net.kyori.adventure.text.TextComponent
 
 /**
  * Implementation of a group of announcements.
@@ -10,7 +12,7 @@ import com.velocitypowered.api.proxy.ProxyServer
  * @param announcements announcements to display (in-order)
  */
 class AnnouncementGroup(
-    val id: String,
+    private val id: String,
     val announcements: ArrayList<Announcement>
 ) : Announcement {
 
@@ -32,6 +34,11 @@ class AnnouncementGroup(
 
     override fun shouldExecute() = currentAnnouncement()?.shouldExecute() == true
 
-    override fun getId() = id
+    override fun lore(): MutableList<TextComponent> {
+        val lore = super.lore()
+        lore += "&7Announcements: &d${announcements.size}".colored()
+        return lore
+    }
 
+    override fun getId() = id
 }

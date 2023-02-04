@@ -1,6 +1,6 @@
 package com.mattmx.announcer.logic;
 
-import com.mattmx.announcer.Announcer;
+import com.mattmx.announcer.OldAnnouncer;
 import com.mattmx.announcer.util.Config;
 import org.simpleyaml.configuration.file.FileConfiguration;
 
@@ -48,7 +48,7 @@ public class AnnouncerManager {
     }
 
     public static void init() {
-        Announcer.get().getServer().getScheduler().buildTask(Announcer.get(), () -> {
+        OldAnnouncer.get().getServer().getScheduler().buildTask(OldAnnouncer.get(), () -> {
             timer++;
             new ArrayList<>(messages).forEach(m -> {
                 if (m.getDelay() != null) {
@@ -57,11 +57,11 @@ public class AnnouncerManager {
                             int min = m.getDelay().getTime();
                             int max = m.getDelay().getMaxTime();
                             m.getDelay().setNext(timer + new Random().nextInt(max - min) + min);
-                            Announcer.get().getServer().getAllPlayers().forEach(m::execute);
+                            OldAnnouncer.get().getServer().getAllPlayers().forEach(m::execute);
                         }
                     } else {
                         if (timer % m.getDelay().getTime() == 0) {
-                            Announcer.get().getServer().getAllPlayers().forEach(m::execute);
+                            OldAnnouncer.get().getServer().getAllPlayers().forEach(m::execute);
                         }
                     }
 //                    if (timer % m.getDelay() == 0) {

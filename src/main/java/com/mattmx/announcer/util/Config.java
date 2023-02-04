@@ -1,6 +1,6 @@
 package com.mattmx.announcer.util;
 
-import com.mattmx.announcer.Announcer;
+import com.mattmx.announcer.OldAnnouncer;
 import org.simpleyaml.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class Config {
     public static YamlConfiguration DEFAULT;
-    public static String DEFAULT_PATH = Announcer.get().getDataFolder() + "/config.yml";
+    public static String DEFAULT_PATH = OldAnnouncer.get().getDataFolder() + "/config.yml";
     public static YamlConfiguration DATA;
-    public static String DATA_PATH = Announcer.get().getDataFolder() + "/data.yml";
+    public static String DATA_PATH = OldAnnouncer.get().getDataFolder() + "/data.yml";
 
     public static void init() {
         //DEFAULT = get(DEFAULT_PATH, "config.yml");
@@ -34,11 +34,11 @@ public class Config {
         if (!file.exists()) {
             try {
                 if (def != null) {
-                    Announcer.get().saveResource(def, false);
+                    OldAnnouncer.get().saveResource(def, false);
                 } else {
                     file.createNewFile();
                 }
-                Announcer.get().logger().info("Created " + path);
+                OldAnnouncer.get().logger().info("Created " + path);
             } catch(Exception e) {
                 e.printStackTrace();
             }

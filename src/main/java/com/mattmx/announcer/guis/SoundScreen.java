@@ -1,9 +1,6 @@
 package com.mattmx.announcer.guis;
 
-import com.mattmx.announcer.Announcer;
-import com.mattmx.announcer.logic.AnnouncerManager;
-import com.mattmx.announcer.logic.AnnouncerMessage;
-import com.mattmx.announcer.logic.ChatInputs;
+import com.mattmx.announcer.OldAnnouncer;
 import com.mattmx.announcer.logic.ChatManager;
 import com.mattmx.announcer.util.VelocityChat;
 import com.mattmx.announcer.util.gui.Enchantments;
@@ -15,17 +12,13 @@ import dev.simplix.protocolize.api.ClickType;
 import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.SoundCategory;
 import dev.simplix.protocolize.api.inventory.InventoryClick;
-import dev.simplix.protocolize.api.inventory.InventoryClose;
-import dev.simplix.protocolize.api.item.ItemStack;
 import dev.simplix.protocolize.api.player.ProtocolizePlayer;
 import dev.simplix.protocolize.data.ItemType;
 import dev.simplix.protocolize.data.Sound;
 import dev.simplix.protocolize.data.inventory.InventoryType;
 import net.kyori.adventure.text.Component;
-import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class SoundScreen extends InventoryBuilder {
     int page = 1;
@@ -145,7 +138,7 @@ public class SoundScreen extends InventoryBuilder {
                     parent.define(getPlayer(), parent.getMessage());
                     parent.open();
                 } else {
-                    if (Announcer.hasProtocolize() && sound != null) {
+                    if (OldAnnouncer.hasProtocolize() && sound != null) {
                         ProtocolizePlayer protocolizePlayer = Protocolize.playerProvider().player(getPlayer().getUniqueId());
                         protocolizePlayer.playSound(sound, SoundCategory.MASTER, 1f, 1f);
                     }

@@ -13,20 +13,12 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import org.slf4j.Logger;
 
-@Plugin(
-        id = "announcer",
-        name = "Announcer",
-        version = "1.2.1",
-        description = "Velocity server-wide announcements!",
-        url = "https://www.mattmx.com",
-        authors = {"MattMX"}
-)
-public class Announcer extends VelocityPlugin {
-    static Announcer instance;
+public class OldAnnouncer extends VelocityPlugin {
+    static OldAnnouncer instance;
     private boolean protocolize;
 
     @Inject
-    public Announcer(ProxyServer server, Logger logger) {
+    public OldAnnouncer(ProxyServer server, Logger logger) {
         this.init(server, logger, "announcer");
         if (DependencyChecker.protocolize()) {
             protocolize = true;
@@ -45,7 +37,7 @@ public class Announcer extends VelocityPlugin {
         AnnouncerManager.init();
     }
 
-    public static Announcer get() {
+    public static OldAnnouncer get() {
         return instance;
     }
 

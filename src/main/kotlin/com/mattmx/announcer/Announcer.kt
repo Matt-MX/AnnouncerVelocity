@@ -2,9 +2,15 @@ package com.mattmx.announcer
 
 import co.pvphub.velocity.command.oldliteral.arguments.string
 import co.pvphub.velocity.command.oldliteral.dsl.command
+import co.pvphub.velocity.command.oldliteral.register
 import co.pvphub.velocity.plugin.VelocityPlugin
 import co.pvphub.velocity.util.colored
 import com.google.inject.Inject
+import com.mattmx.announcer.announcements.AnnouncementGroup
+import com.mattmx.announcer.announcements.SimpleAnnouncement
+import com.mattmx.announcer.announcements.SimpleAnnouncementOptions
+import com.mattmx.announcer.guis.AnnouncementListScreen
+import com.mattmx.announcer.guis.base.open
 import com.mattmx.announcer.utils.DependencyChecker
 import com.velocitypowered.api.command.CommandSource
 import com.velocitypowered.api.event.PostOrder
@@ -12,8 +18,11 @@ import com.velocitypowered.api.event.Subscribe
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent
 import com.velocitypowered.api.plugin.Plugin
 import com.velocitypowered.api.plugin.annotation.DataDirectory
+import com.velocitypowered.api.proxy.Player
 import com.velocitypowered.api.proxy.ProxyServer
 import java.nio.file.Path
+import java.time.Duration
+import java.util.*
 import java.util.logging.Logger
 
 @Plugin(
@@ -35,6 +44,7 @@ class Announcer @Inject constructor(
     @Subscribe(order = PostOrder.LATE)
     fun onProxyInitialize(event: ProxyInitializeEvent) {
         saveDefaultConfig()
+        instance = this
 
         protocolizeInstalled = DependencyChecker.protocolize()
         if (!protocolizeInstalled) {
@@ -42,6 +52,42 @@ class Announcer @Inject constructor(
         }
 
         AnnouncementManager.init(server, this)
+
+        // DEBUG
+        AnnouncementManager.register(
+            AnnouncementGroup(
+                "main-group",
+                arrayListOf(
+                    SimpleAnnouncement(
+                        "discord",
+                        mutableListOf(
+                            "&7",
+                            "&fJoin our discord!",
+                            "&7"
+                        ).map { it.colored() }.toMutableList(),
+                        SimpleAnnouncementOptions(
+                            Duration.ofMillis(30000)
+                        )
+                    ),
+                )
+            )
+        )
+
+        repeat(15) {
+            AnnouncementManager.register(
+                SimpleAnnouncement(
+                    UUID.randomUUID().toString(),
+                    mutableListOf(
+                        "&7",
+                        "&fRandomly generated announcement!",
+                        "&7"
+                    ).map { it.colored() }.toMutableList(),
+                    SimpleAnnouncementOptions(
+                        Duration.ofMillis(30000)
+                    )
+                )
+            )
+        }
 
         command<CommandSource>("announcer") {
             subcommand(command("reload") {
@@ -53,7 +99,11 @@ class Announcer @Inject constructor(
                     val announcement = AnnouncementManager.getById(id)
                     if (announcement == null) {
                         source.sendMessage("&cInvalid announcement ID.".colored())
-                        source.sendMessage("&f${AnnouncementManager.all().joinToString("&7, &f") { it.getId() }}".colored())
+                        source.sendMessage(
+                            "&f${
+                                AnnouncementManager.all().joinToString("&7, &f") { it.getId() }
+                            }".colored()
+                        )
                         return@runs
                     }
                     source.sendMessage("&aForcing ${announcement.getId()} to run.".colored())
@@ -66,10 +116,21 @@ class Announcer @Inject constructor(
                     source.sendMessage("&cInstall Protocolize to use the GUI interface.".colored())
                     return@runs
                 }
-                // TODO(Matt): Open velocity announcer GUI manager
+                if (source !is Player) {
+                    return@runs source.sendMessage("&cThis is a player only command, since it requires a GUI.".colored())
+                }
+                val player = source as Player
+                AnnouncementListScreen()
+                    .build(player)
+                    .open(player)
             }
-        }
+        }.register(server)
     }
 
     fun version() = (this::class.annotations.firstOrNull { it is Plugin } as Plugin?)?.version ?: "0.0.0"
+
+    companion object {
+        private lateinit var instance: Announcer
+        fun get() = instance
+    }
 }

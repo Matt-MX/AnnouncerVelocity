@@ -1,6 +1,6 @@
 package com.mattmx.announcer.util;
 
-import com.mattmx.announcer.Announcer;
+import com.mattmx.announcer.OldAnnouncer;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import net.kyori.adventure.text.Component;
@@ -48,7 +48,7 @@ public class VelocityChat {
     }
 
     public static String format(String s) {
-        return s.replace("%all-online%", Integer.toString(Announcer.get().getServer().getAllPlayers().size()));
+        return s.replace("%all-online%", Integer.toString(OldAnnouncer.get().getServer().getAllPlayers().size()));
     }
 
     private static final Pattern pattern = Pattern.compile("&#[a-f0-9]{6}|&[a-f0-9k-o]|&r", Pattern.CASE_INSENSITIVE);

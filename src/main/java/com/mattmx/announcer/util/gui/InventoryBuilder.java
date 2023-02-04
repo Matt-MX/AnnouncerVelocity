@@ -1,6 +1,5 @@
 package com.mattmx.announcer.util.gui;
 
-import com.mattmx.announcer.Announcer;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.proxy.Player;
 import dev.simplix.protocolize.api.Protocolize;
@@ -8,8 +7,8 @@ import dev.simplix.protocolize.api.inventory.Inventory;
 import dev.simplix.protocolize.api.inventory.InventoryClick;
 import dev.simplix.protocolize.api.inventory.InventoryClose;
 import dev.simplix.protocolize.api.inventory.PlayerInventory;
+import dev.simplix.protocolize.api.item.BaseItemStack;
 import dev.simplix.protocolize.api.item.ItemStack;
-import dev.simplix.protocolize.api.packet.AbstractPacket;
 import dev.simplix.protocolize.api.player.ProtocolizePlayer;
 import dev.simplix.protocolize.data.ItemType;
 import dev.simplix.protocolize.data.inventory.InventoryType;
@@ -25,7 +24,7 @@ public abstract class InventoryBuilder {
     private Player player;
     private TextComponent title;
     private HashMap<Integer, ItemStack> items = new HashMap<>();
-    private List<ItemStack> emptyItems = new ArrayList<>();
+    private List<BaseItemStack> emptyItems = new ArrayList<>();
 
     public void type(InventoryType type) {
         this.type = type;

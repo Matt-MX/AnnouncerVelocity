@@ -52,6 +52,7 @@ object AnnouncementManager {
 
     fun getById(id: String) = announcements.firstOrNull { it.getId() == id }
 
+    @JvmName("getByIdWithType")
     fun <T : Announcement> getById(id: String) = announcements.firstOrNull { it.getId() == id } as T?
 
     operator fun contains(announcement: Announcement) = announcements.toMutableList().contains(announcement)

@@ -1,26 +1,20 @@
 package com.mattmx.announcer.logic;
 
-import com.mattmx.announcer.Announcer;
+import com.mattmx.announcer.OldAnnouncer;
 import com.mattmx.announcer.util.VelocityChat;
 import com.velocitypowered.api.proxy.Player;
 import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.SoundCategory;
-import dev.simplix.protocolize.api.inventory.PlayerInventory;
 import dev.simplix.protocolize.api.player.ProtocolizePlayer;
 import dev.simplix.protocolize.data.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.Ticks;
 
-import java.time.Duration;
 import java.util.*;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AnnouncerMessage {
     private String id;
@@ -37,7 +31,7 @@ public class AnnouncerMessage {
                     Title.Times.of(Ticks.duration(10), Ticks.duration(40), Ticks.duration(10))
             );
             p.showTitle(title);
-            if (Announcer.hasProtocolize() && sound != null) {
+            if (OldAnnouncer.hasProtocolize() && sound != null) {
                 ProtocolizePlayer protocolizePlayer = Protocolize.playerProvider().player(p.getUniqueId());
                 protocolizePlayer.playSound(Sound.valueOf(sound), SoundCategory.MASTER, 1f, 1f);
             }

@@ -1,7 +1,7 @@
 package com.mattmx.announcer.commands;
 
 import com.google.common.collect.ImmutableList;
-import com.mattmx.announcer.Announcer;
+import com.mattmx.announcer.OldAnnouncer;
 import com.mattmx.announcer.guis.AnnouncementsScreen;
 import com.mattmx.announcer.logic.AnnouncerManager;
 import com.mattmx.announcer.logic.AnnouncerMessage;
@@ -13,7 +13,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.TextColor;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -50,7 +49,7 @@ public class AnnounceCommand implements SimpleCommand {
                             String val = args[1];
                             AnnouncerMessage msg = AnnouncerManager.byId(val);
                             if (msg != null) {
-                                Announcer.get().getServer().getAllPlayers().forEach(msg::execute);
+                                OldAnnouncer.get().getServer().getAllPlayers().forEach(msg::execute);
                             } else {
                                 p.sendMessage(VelocityChat.color("&9&lVelocityAnnouncer &7» &cNo valid message by that ID!"));
                             }
@@ -61,7 +60,7 @@ public class AnnounceCommand implements SimpleCommand {
                     }
                 }
             } else {
-                if (!Announcer.hasProtocolize()) {
+                if (!OldAnnouncer.hasProtocolize()) {
                     p.sendMessage(VelocityChat.color("&9&lAnnouncer &7» &fYou do not have &a&nProtocolize&f installed!")
                             .clickEvent(ClickEvent.openUrl("https://github.com/Exceptionflug/protocolize")));
                     return;
