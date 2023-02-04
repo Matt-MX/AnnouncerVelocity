@@ -6,6 +6,6 @@ import java.time.Duration
 fun Duration.formatted() =
     DurationFormatUtils.formatDuration(
         this.toMillis(),
-        "**h:mm:ss**",
+        "hh:mm:ss",
         true
     )
