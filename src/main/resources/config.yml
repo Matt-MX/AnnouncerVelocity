@@ -1,0 +1,27 @@
+manual:
+  subtitle: '&6&lMANUAL ANNOUNCEMENT'
+  sound: BLOCK_RESPAWN_ANCHOR_SET_SPAWN
+  delay: -1
+  chat:
+    - ' '
+    - '               &6&lMAUNAL ANNOUNCEMENT'
+    - '            &7Has to be manually triggered'
+    - ' '
+example:
+  title:
+    title: "&6&l30 seconds"
+    subtitle: "&7have passed"
+  delay: 30
+  chat:
+    - '&6&l30s timer!'
+shop:
+  sound: ENTITY_TURTLE_LAY_EGG
+  delay: 300
+  chat:
+    - '                 &6&lWANT MORE PERKS?'
+    - '         &7Donate now to receive special perks!'
+    - '            &6>> &e&nhttps://shop.website.com &6<<'
+random:
+  delay: 600-300
+  chat:
+    - '&c&lThis announcement was after a random interval!'
